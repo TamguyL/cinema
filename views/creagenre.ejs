@@ -1,0 +1,31 @@
+<% if (locals.user.role == 'admin') { %>
+<%-include ('headeradmin.ejs') %>
+<div class="cadre">
+    <center>
+        <h1>Crée un nouveau Genre</h1>
+        <form action="/creagenre" method="post">
+            <input type="text" name="type" placeholder="Type">
+            <input type="submit" value="Enregistrer">
+        </form>
+    </center>
+</div>
+
+<div class="cadre">
+<h1>Modifier les Genres</h1>
+<% genre.forEach( (g) => { %>
+    <div class="cadre">
+        <form action="/modifreal" method="post">
+            <p>Genre : <%= g.id_genre %></p>
+            <input type="hidden" name="idmodif" value="<%= g.id_genre %>">
+            <p><%= g.type %></p>
+            <input type="text" name="typemodif" value="<%= g.type %>"><br><br>
+            <input type="submit" name="actionto" value="Modifier"><br><br>
+            <input type="submit" name="actionto" value="Supprimer">
+        </form>
+    </div>
+<% }); %>
+</div>
+<% } else { %>
+    <p>Tu n'as rien a faire là !</p>
+<% } %>
+<%-include ('footer.ejs') %>

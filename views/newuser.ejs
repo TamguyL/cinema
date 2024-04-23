@@ -1,0 +1,10 @@
+<%-include ('header.ejs') %>
+<h1>Enregistrer</h1>
+<form action="/newuser" method="post">
+    <input type="text" name="nom" placeholder="Nom">
+    <input type="text" name="prenom" placeholder="Prenom">
+    <input type="text" name="email" placeholder="Mail">
+    <input type="password" name="password" placeholder="Mot de passe">
+    <input type="submit" value="Valider">
+</form>
+<%-include ('footer.ejs') %>

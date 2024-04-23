@@ -1,0 +1,84 @@
+<%-include ('header.ejs') %>
+
+<%  let note = 0;
+    comment.forEach((calc) => {note += calc.note});
+    let moyen = note/comment.length;
+    let notemoyenne = moyen.toFixed(1);
+    %>
+
+<div class="cadre">
+    <h1><%= film.titre %></h1>
+    <div class="note">
+        <svg style="display:none;">
+            <defs>
+              <symbol id="fivestars">
+                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z M0 0 h24 v24 h-24 v-24" fill="white" fill-rule="evenodd"/>
+                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z M0 0 h24 v24 h-24 v-24" fill="white" fill-rule="evenodd" transform="translate(24)"/>
+                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z M0 0 h24 v24 h-24 v-24" fill="white" fill-rule="evenodd" transform="translate(48)"/>
+                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z M0 0 h24 v24 h-24 v-24" fill="white" fill-rule="evenodd" transform="translate(72)"/>
+                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z M0 0 h24 v24 h-24 v-24" fill="white" fill-rule="evenodd"  transform="translate(96)"/>
+              </symbol>
+            </defs>
+          </svg>
+          <div class="rating">
+          <!--   <div class="rating-bg" style="width: 90%;"></div> -->
+            <progress class="rating-bg" value="<%= notemoyenne %>" max="5"></progress>
+            <svg><use xlink:href="#fivestars"/></svg>
+          </div>
+    </div>
+    <p>Description : <%= film.description %></p>
+    <img src="/uploads/<%= film.affiche %>" width="240" height="320">
+    <h3>Acteurs :</h3>
+    <% joue.forEach( (j) => { %>
+        <% acteur.forEach( (a) => { %>
+            <% if (j.Id_acteur == a.id_acteur) { %>
+                <p class="acteur"><%= a.nom %> <%= a.prenom %></p>
+            <% }; %>
+        <% }); %>
+    <% }); %>
+</div>
+<div class="cadre">
+    <center>
+        <form action="/detailfilm" method="post">
+            <input type="hidden" name="id" value="<%= film.id_film %>">
+            <input type="hidden" name="mail" value="<%= locals.user.email %>">
+            <label for="note">Note : </label>
+                <input type="radio" name="note" value="0">
+                <label for="0">0</label>
+                <input type="radio" name="note" value="1">
+                <label for="1">1</label>
+                <input type="radio" name="note" value="2">
+                <label for="2">2</label>
+                <input type="radio" name="note" value="3">
+                <label for="3">3</label>
+                <input type="radio" name="note" value="4">
+                <label for="4">4</label>
+                <input type="radio" name="note" value="5">
+                <label for="5">5</label><br>
+            <label for="comment">Commentaire : </label><br>
+            <textarea id="comment" name="comment" rows="5" cols="50"></textarea><br><br>
+            <input type="submit" value="Enregistrer">
+        </form>
+    </center>
+</div>
+<div class="cadre">
+    <center>
+    <% comment.forEach( (c) => { %>
+        <div class="cadre">
+            <% usecomment.forEach( (u) => { %>
+            <% if (c.mail == u.email) { %>
+                <h2><%= u.nom %> <%= u.prenom %></h2>
+            <% };}); %>
+            <p>
+                <%= c.commentaire %>
+            </p>
+            <p>
+                Note : <%= c.note %>
+            </p>
+        </div>
+    <% }); %>
+    </center>
+</div>
+<br><br>
+<%-include ('footer.ejs') %>
+

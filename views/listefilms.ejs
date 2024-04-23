@@ -1,0 +1,19 @@
+<%-include ('header.ejs') %>
+<center>
+<h1>Liste film</h1>
+
+<% if (locals.user.role == 'admin') { %>
+        <a href="/ajout/"><button>Ajout</button></a><br><br>
+<% }; %>
+ <a href="/profil"><button>Profil</button></a><br>
+</center>
+        <ul>
+            <% film.forEach( (f) => { %>
+                <li>
+                    <a href="/detailfilm/<%= f.id_film %>"><%= f.titre %></a><br> 
+                </li>
+            <% }); %>
+        </ul>
+    
+
+<%-include ('footer.ejs') %>

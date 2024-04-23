@@ -1,0 +1,52 @@
+<% if (locals.user.role == 'admin') { %>
+<%-include ('headeradmin.ejs') %>
+
+<div class="cadre">
+    <center>
+        <h1>Crée un nouvel Acteur</h1>
+        <form action="/creaacteur" method="post" enctype="multipart/form-data">
+            <input type="text" name="nom" placeholder="Nom">
+            <input type="text" name="prenom" placeholder="Prénom"><br><br>
+            <label for="photo">Photo :</label>
+            <input type="file" id="photo" name="upload"/><br><br>
+            <input type="submit" value="Enregistrer">
+        </form>
+    </center>
+</div>
+
+<div class="cadre">
+<h1>Modifier les acteurs</h1>
+<% acteur.forEach( (a) => { %>
+    <div class="cadre">
+        <form action="/modifacteur" method="post" enctype="multipart/form-data">
+            <p>Acteur : <%= a.id_acteur %></p>
+            <input type="hidden" name="idmodif" value="<%= a.id_acteur %>">
+            <p><%= a.nom %></p>
+            <input type="text" name="nommodif" value="<%= a.nom %>"><br>
+            <p><%= a.prenom %></p>
+            <input type="text" name="prenommodif" value="<%= a.prenom %>"><br><br>
+            <img src="/uploads/<%= a.photo %>" width="320" height="320"><br><br>
+            <label for="photo">Photo :</label>
+            <input type="file" id="photo" name="upload"/><br><br>
+            <% film.forEach( (f) => { %>
+                <input type="checkbox" name="checkfilm" value="<%= f.id_film %>"
+                <% joue.forEach( (j) => { 
+                    let id_film = j.Id_film
+                    let id_acteur = j.Id_acteur
+                    if (f.id_film === id_film && a.id_acteur === id_acteur) { %>
+                        checked <% }; %>
+                <% }); %> >
+                <label for="<%= f.titre %>"> <%= f.titre %></label><br>
+            <% }); %>
+            <input type="submit" name="actionto" value="Modifier"><br><br>
+            <input type="submit" name="actionto" value="Supprimer">
+        </form>
+    </div>
+<% }); %>
+</div>
+        
+<% } else { %>
+     <p>Tu n'as rien a faire là !</p>
+<% } %>
+
+<%-include ('footer.ejs') %>

@@ -1,0 +1,26 @@
+<%-include ('header.ejs') %>
+<center>
+<h1>Modifie ton profil :<br>
+    <%= locals.user.nom %> <%= locals.user.prenom %></h1>
+<form action="/usermodif" method="post">
+    <input type="hidden" name="id" value="<%= locals.user.id %>">
+    <input type="hidden" name="idpass" value="<%= locals.user.password %>">
+    <p>Nom :</p>
+    <input type="text" name="nom" value="<%= locals.user.nom %>">
+    <br>
+    <p>Prenom :</p>
+    <input type="text" name="prenom" value="<%= locals.user.prenom %>">
+    <br>
+    <p>Email :</p>
+    <input type="text" name="email" value="<%= locals.user.email %>">
+    <br>
+    <br>
+    Verification Mot de passe :<br>
+    <input type="password" name="password" placeholder="password">
+    <br><br>
+    <input type="submit" value="Modifier">
+</form>
+<br>
+</center>
+<br>
+<%-include ('footer.ejs') %>

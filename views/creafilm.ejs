@@ -1,0 +1,73 @@
+<% if (locals.user.role == 'admin') { %>
+<%-include ('headeradmin.ejs') %>
+<div class="cadre">
+    <center>
+<h1>Crée un nouveau film</h1>
+<form action="/creafilm" method="post" enctype="multipart/form-data">
+    <label for="titre">Titre :</label><br>
+    <input type="text" id="titre" name="titre" placeholder="titre"><br><br>
+    <label for="realisateur">Réalisateur :</label><br>
+    <select id="realisateur" name="realisateur"><br><br>
+        <% realisateur.forEach( (r) => { %>
+            <option value="<%= r.id_realisateur %>"><%= r.nom %>&nbsp;<%= r.prenom %></option>
+        <% }); %>
+    </select><br><br>
+    <label for="genre">Genre :</label><br>
+    <select id="genre" name="genre">
+        <% genre.forEach( (g) => { %>
+            <option value="<%= g.id_genre %>"><%= g.type %></option>
+        <% }); %>
+    </select><br><br>
+    <label for="description">Description :</label><br>
+    <textarea id="description" name="description" rows="5" cols="50"></textarea><br><br>
+    <label for="affiche">Affiche :</label><br>
+    <input type="file" id="affiche" name="upload"/><br><br><br>
+    <input type="submit" value="Enregistrer">
+</form>
+</center>
+</div>
+
+<div class="cadre">
+<h1>Modifier les film</h1>
+<% film.forEach( (f) => { %>
+<div class="cadre">
+<h1><%= f.titre %></h1>
+<center>
+    <form action="/modiffilm" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<%= f.id_film %>">
+        <label for="titre">Titre :</label><br>
+        <input type="text" name="titre" value="<%= f.titre %>"><br><br>
+        <label for="description">Description :</label><br>
+        <textarea id="description" name="description" rows="7" cols="50"><%= f.description %></textarea><br><br>
+        <label for="realisateur">Realisateur :</label><br>
+        <select name="realisateur">
+            <% realisateur.forEach( (r) => { %>
+                <option value="<%= r.id_realisateur %>"
+                    <% if (r.id_realisateur == film.id_realisateur) {%> selected <% }; %>
+                    ><%= r.nom %>&nbsp;<%= r.prenom %></option>
+            <% }); %>
+        </select>
+        <br><br>
+        <label for="genre">Genre :</label><br>
+        <select name="genre">
+            <% genre.forEach( (g) => { %>
+                <option value="<%= g.id_genre %>"
+                    <% if (g.id_genre == film.id_genre) {%> selected <% }; %>
+                    ><%= g.type %></option>
+            <% }); %>
+        </select>
+        <br><br>
+        <img src="/uploads/<%= f.affiche %>" width="240" height="320"><br><br>
+        <label for="affiche">Affiche :</label>
+        <input type="file" id="affiche" name="upload"/><br><br><br>
+        <input type="submit" name="actionto" value="Modifier"><br><br>
+        <input type="submit" name="actionto" value="Supprimer">
+    </form>
+</center>
+</div>
+<% }); %>
+</div>
+<% } else { %>
+    <p>Tu n'as rien a faire là !</p>
+<% } %>
+<%-include ('footer.ejs') %>

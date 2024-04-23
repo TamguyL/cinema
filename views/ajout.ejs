@@ -1,0 +1,14 @@
+<%-include ('header.ejs') %>
+
+<% if (locals.user.role == 'admin') { %>
+        <center>
+                <h1>Ajout</h1>
+                <a href="/creafilm/"><button>Nouveau film</button></a><br><br>
+                <a href="/creaacteur/"><button>Nouvel Acteur</button></a><br><br>
+                <a href="/creareal/"><button>Nouveau Réalisateur</button></a><br><br>
+                <a href="/creagenre/"><button>Nouveau Genre</button></a><br>
+        </center>
+<% } else { %>
+ <p>Tu n'as rien a faire là !</p>
+<% } %>
+<%-include ('footer.ejs') %>

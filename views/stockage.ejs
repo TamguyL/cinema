@@ -1,0 +1,19 @@
+<select name="realisateur">
+    <% realisateur.forEach( (r) => { %>
+        <option value="<%= r.id_realisateur %>"><%= r.nom %>&nbsp;<%= r.prenom %></option>
+    <% }); %>
+</select>
+<select name="genre">
+    <% genre.forEach( (g) => { %>
+        <option value="<%= g.id_genre %>"><%= g.type %></option>
+    <% }); %>
+</select>
+
+&& joue.Id_acteur === acteur.id_acteur
+
+
+<% joue.forEach( (j) => { 
+    let id_film = j[].Id_film
+    if (f.id_film === id_film) { %>
+        checked <% }; %>
+<% }); %>

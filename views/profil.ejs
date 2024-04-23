@@ -1,0 +1,7 @@
+<%-include ('header.ejs') %>
+<h1><%= locals.user.nom %>&nbsp;<%= locals.user.prenom %></h1>
+<h2><%= locals.user.email %></h2>
+<button><a href="/usermodif/<%= locals.user.id %>">modifier le profil</a></button><br><br>
+<button><a href="/usersuppr/<%= locals.user.id %>">supprimer le profil</a></button>
+<br><br>
+<%-include ('footer.ejs') %>

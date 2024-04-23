@@ -1,0 +1,19 @@
+<%-include('header.ejs')%>
+
+<center>
+    <div id="formulaireConnexion">
+    <h1 id="connectezVous">Connectez-Vous</h1>
+<form method="post" action="/connect">
+    <p class="nomsInputs"> Adresse e-mail : </p>
+    <input class="mesInputs" type="email" name="email" >
+    <p class="nomsInputs"> Mot de Passe : </p>
+    <input class="mesInputs" type="password" name="password" ><br><br>
+    <input id="bouton" type="submit" value="Connexion">
+</form>
+
+    <br>
+    <a href="/newuser/"><button>Inscription</button></a>
+</div>
+</center>
+
+<%-include('footer.ejs')%>
