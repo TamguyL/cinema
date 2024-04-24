@@ -34,12 +34,12 @@ for(let f of film){
 
             '<center><p> Titre : '+response.data.film.titre+'</p>'+
             '<img src="/uploads/'+response.data.film.affiche+'" width="240" height="320">'+
-            '<p>Description : '+response.data.film.description +'</p>';
+            '<p>Description : '+response.data.film.description +'</p></center>';
             for(let j of response.data.joue){
                 for(let a of response.data.acteur){
                     if (j.Id_acteur == a.id_acteur) {
                         document.getElementById("detailfilm").innerHTML +=
-                        '<p> Acteurs : '+a.nom+' '+a.prenom+'</p>'
+                        '<center><p> Acteurs : <br>'+a.nom+' '+a.prenom+'</p></center>'
                     };
                 }
             }
