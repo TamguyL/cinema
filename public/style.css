@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .rating {
     width: 120px;
     height: 24px;

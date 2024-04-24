@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const session = require('express-session')
 const multer  = require('multer')
 const upload = multer({ dest: 'public/uploads/' })
+const path = require('path');
 const app = express();
 
 const pool = require('mysql2/promise').createPool({
@@ -12,10 +13,14 @@ const pool = require('mysql2/promise').createPool({
   database: 'mcdcinema',
   multipleStatements: true,
 });
+const dotenv = require('dotenv')
 
 
+dotenv.config();
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: true, cookie: { maxAge: 8640000 } }))
 app.set("view engine", "ejs");
 app.use(function (req, res, next) { res.locals.user = req.session.user; next(); });
@@ -359,6 +364,26 @@ app.get('/detailfilm/:id', function (req, res) {
       console.log(err);
     });
 })
+app.get('/apidetail/:id', function (req, res) {
+  pool.getConnection()
+    .then((conn) => {
+      const res = conn.query(
+        {
+          sql: 'SELECT * FROM film WHERE id_film= ?; SELECT * FROM commentaire WHERE id_film= ?; SELECT * FROM joue WHERE Id_film= ?; SELECT * FROM acteur',
+          rowsAsArray: false,
+        },[req.params.id,req.params.id,req.params.id,]
+      );
+      conn.release();
+      return res;
+    })
+    .then((detailfilm) => {
+      let obj = { film: detailfilm[0][0][0], comment: detailfilm[0][1], joue : detailfilm[0][2], acteur : detailfilm[0][3],}
+      res.json(obj);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+})
 // ajout commentaire
 app.post("/detailfilm", function (req, res) {
   let id = req.body.id;
@@ -634,4 +659,4 @@ app.post("/newuser", function (req, res) {
 
 
 
-app.listen(8088, () => console.log('lancer sur le port 8088'))
+app.listen(process.env.PORT, () => console.log('lancer sur le port '+ process.env.PORT))

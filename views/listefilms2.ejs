@@ -7,17 +7,13 @@
 <% }; %>
  <a href="/profil"><button>Profil</button></a><br>
 </center>
-    <section>
         <ul>
             <% film.forEach( (f) => { %>
-                <li class="film" id="<%= f.id_film %>">
-                    <p><%= f.titre %></p>
+                <li>
+                    <a href="/detailfilm/<%= f.id_film %>"><%= f.titre %></a><br> 
                 </li>
             <% }); %>
         </ul>
-        <div id="detailfilm" class="cadre">
+    
 
-        </div>
-    </section>
-    <script src="script.js"> </script>
 <%-include ('footer.ejs') %>
