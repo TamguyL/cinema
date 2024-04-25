@@ -1,7 +1,4 @@
 let film = document.getElementsByClassName("film");
-console.log(film)
-
-
 
 for(let f of film){
     f.addEventListener("click", (event) =>{
@@ -12,7 +9,8 @@ for(let f of film){
             let moyen = note/response.data.comment.length;
             let notemoyenne = moyen.toFixed(1)
 
-            document.getElementById("detailfilm").innerHTML = 
+            document.getElementById("detailfilm").innerHTML = '<div class="detailfilm">'+
+            '<center><h1>'+response.data.film.titre+'</h1>'+
             '<div class="note">'+
                 '<svg style="display:none;">'+
                     '<defs>'+
@@ -31,15 +29,13 @@ for(let f of film){
                     '<svg><use xlink:href="#fivestars"/></svg>'+
                 '</div>'+
             '</div>'+
-
-            '<center><p> Titre : '+response.data.film.titre+'</p>'+
-            '<img src="/uploads/'+response.data.film.affiche+'" width="240" height="320">'+
-            '<p>Description : '+response.data.film.description +'</p></center>';
+            '<img class="affichefilm" src="/uploads/'+response.data.film.affiche+'" width="240" height="320">'+
+            '<p class="description">'+response.data.film.description +'</p></center>';
             for(let j of response.data.joue){
                 for(let a of response.data.acteur){
                     if (j.Id_acteur == a.id_acteur) {
                         document.getElementById("detailfilm").innerHTML +=
-                        '<center><p> Acteurs : <br>'+a.nom+' '+a.prenom+'</p></center>'
+                        '<center><p> Acteurs : <br>'+a.nom+' '+a.prenom+'</p></center></div>'
                     };
                 }
             }
@@ -47,7 +43,3 @@ for(let f of film){
         });
     })
 }
-    // let saisie = document.getElementById("envoi").class
-    // axios.get('/detailfilm/:id', {obj: saisie}).then((response) => {
-    //     console.log(response.data)
-    // });

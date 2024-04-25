@@ -8,6 +8,7 @@
  <a href="/profil"><button>Profil</button></a><br>
 </center>
     <section>
+    <div class="scroll">
         <ul>
             <% film.forEach( (f) => { %>
                 <li class="film" id="<%= f.id_film %>">
@@ -15,9 +16,8 @@
                 </li>
             <% }); %>
         </ul>
-        <div id="detailfilm" class="cadre">
-
-        </div>
+    </div>
+    <div id="detailfilm"></div>
     </section>
-    <script src="script.js"> </script>
+    <script src="script.js"></script>
 <%-include ('footer.ejs') %>

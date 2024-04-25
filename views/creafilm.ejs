@@ -9,7 +9,7 @@
     <label for="realisateur">Réalisateur :</label><br>
     <select id="realisateur" name="realisateur"><br><br>
         <% realisateur.forEach( (r) => { %>
-            <option value="<%= r.id_realisateur %>"><%= r.nom %>&nbsp;<%= r.prenom %></option>
+            <option value="<%= r.id_realisateur %>"><%= r.prenom %>&nbsp;<%= r.nom %></option>
         <% }); %>
     </select><br><br>
     <label for="genre">Genre :</label><br>
@@ -44,7 +44,7 @@
             <% realisateur.forEach( (r) => { %>
                 <option value="<%= r.id_realisateur %>"
                     <% if (r.id_realisateur == film.id_realisateur) {%> selected <% }; %>
-                    ><%= r.nom %>&nbsp;<%= r.prenom %></option>
+                    ><%= r.prenom %>&nbsp;<%= r.nom %></option>
             <% }); %>
         </select>
         <br><br>
