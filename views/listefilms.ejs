@@ -3,11 +3,11 @@
 <h1>Liste film</h1>
 
 <% if (locals.user.role == 'admin') { %>
-        <a href="/ajout/"><button>Edition</button></a><br><br>
+        <a href="/ajout"><button>Edition</button></a><br><br>
 <% }; %>
  <a href="/profil"><button>Profil</button></a><br>
 </center>
-    <section>
+    <section class="listsec">
     <div class="scroll">
         <ul>
             <% film.forEach( (f) => { %>

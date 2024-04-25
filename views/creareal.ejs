@@ -18,13 +18,12 @@
 <% real.forEach( (r) => { %>
     <div class="cadre">
         <form action="/modifreal" method="post" enctype="multipart/form-data">
-            <p>Réalisateur : <%= r.id_realisateur %></p>
             <input type="hidden" name="idmodif" value="<%= r.id_realisateur %>">
             <p><%= r.nom %></p>
             <input type="text" name="nommodif" value="<%= r.nom %>"><br>
             <p><%= r.prenom %></p>
             <input type="text" name="prenommodif" value="<%= r.prenom %>"><br><br>
-            <img src="/uploads/<%= r.photo %>" width="320" height="320"><br><br>
+            <img src="/uploads/<%= r.photo %>" width="150" height="201"><br><br>
             <label for="photo">Photo :</label><br>
             <input type="file" id="photo" name="upload"/><br><br>
             <input type="submit" name="actionto" value="Modifier"><br><br>

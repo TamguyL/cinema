@@ -4,8 +4,21 @@
 html{
     background: linear-gradient(-98deg, #F7F6CF, #F4CFDF);
 }
+h1 {
+    color: red;
+}
+.navadmin {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
 
-section {
+
+/* ---------------------- */
+/* Liste Film coté droit */
+.listsec {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -37,7 +50,6 @@ section {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
                 rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
-
 .description {
     width: 65%;
     margin: 1vw;
@@ -49,14 +61,12 @@ section {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
                 rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
-
 .rating {
     width: 120px;
     height: 24px;
     position: relative;
     background-color: gray;
 }
-
 .rating progress.rating-bg {
     -webkit-appearance: none;
     -moz-appearence: none;
@@ -67,15 +77,12 @@ section {
     width: 100%;
     color: orange;
 }
-
 .rating progress.rating-bg::-webkit-progress-value {
     background-color: orange;
 }
-
 .rating progress.rating-bg::-moz-progress-bar {
     background-color: orange;
 }
-
 .rating svg {
     position: absolute;
     top: 0;
@@ -84,14 +91,11 @@ section {
     height: 100%;
 }
 
-h1 {
-    color: red;
-}
-
+/* ---------------------- */
+/* Liste Film coté gauche */
 ul {
     list-style-type: none;
 }
-
 li {
     margin: 1em;
     padding: 1em;
@@ -108,17 +112,60 @@ li {
 .button {
     align-items: right;
 }
-
 .cadre {
     border: 1px solid black;
     margin: 1em;
     padding: 1em;
 }
 
-.navadmin {
+/* ---------------------- */
+/* Liste Film coté gauche */
+.creasec {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    flex-direction: column;
+}
+.creasec h1 {
+    text-align: center;
+}
+.creadiv {
+    margin: 1vw;
+    padding: 1vw;
+    width: 80%;
+    height: auto;
+    border-radius: 30px;
+    background: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+                rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+                rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.creaform {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    grid-template-areas:
+    "a b c"
+    "d e f";
+}
+.griddivmod1{
+    grid-area: a;
+}
+.griddivmod2{
+    grid-area: d;
+}
+.griddivmod3{
+    grid-area: b;
+    
+}
+.griddivmod4{
+    grid-area: c;
+}
+.griddivmod5{
+    grid-area: e;
+    align-self: center;
+}
+.griddivmod6{
+    grid-area: f;
 }
