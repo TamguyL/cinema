@@ -1,38 +1,54 @@
 <% if (locals.user.role == 'admin') { %>
 <%-include ('headeradmin.ejs') %>
-<div class="cadre">
-    <center>
+<section class="creasec">
+    <div class="creadiv">
         <h1>Crée un nouveau Réalisateur</h1>
-        <form action="/creareal" method="post" enctype="multipart/form-data">
-            <input type="text" name="nom" placeholder="Nom">
-            <input type="text" name="prenom" placeholder="Prénom">
-            <label for="photo">Photo :</label><br>
-            <input type="file" id="photo" name="upload"/><br><br>
-            <input type="submit" value="Enregistrer">
+        <form class="creaform" action="/creareal" method="post" enctype="multipart/form-data">
+            <div class="griddiv griddivr1 form__group field">
+                <input class="form__field" type="text" name="nom" placeholder="Nom">
+                <label for="nom" class="form__label">Nom</label>
+            </div>
+            <div class="griddiv griddivr2 form__group field">
+                <input class="form__field" type="text" name="prenom" placeholder="Prénom">
+                <label for="nom" class="form__label">Prénom</label>
+            </div>
+            <div class="griddiv griddivr3 form__group field">
+                <label for="photo" class="form__label">Photo</label><br>
+                <input class="form__field" type="file" id="photo" name="upload"/><br><br>
+            </div>
+            <div class="griddiv griddivr4">
+                <input type="submit" value="Enregistrer">
+            </div>
         </form>
-    </center>
 </div>
 
-<div class="cadre">
 <h1>Modifier les réalisateurs</h1>
 <% real.forEach( (r) => { %>
-    <div class="cadre">
-        <form action="/modifreal" method="post" enctype="multipart/form-data">
-            <p>Réalisateur : <%= r.id_realisateur %></p>
-            <input type="hidden" name="idmodif" value="<%= r.id_realisateur %>">
-            <p><%= r.nom %></p>
-            <input type="text" name="nommodif" value="<%= r.nom %>"><br>
-            <p><%= r.prenom %></p>
-            <input type="text" name="prenommodif" value="<%= r.prenom %>"><br><br>
-            <img src="/uploads/<%= r.photo %>" width="320" height="320"><br><br>
-            <label for="photo">Photo :</label><br>
-            <input type="file" id="photo" name="upload"/><br><br>
-            <input type="submit" name="actionto" value="Modifier"><br><br>
-            <input type="submit" name="actionto" value="Supprimer">
+    <div class="creadiv">
+        <form class="creaform" action="/modifreal" method="post" enctype="multipart/form-data">
+            <div class="griddiv griddivr1 form__group field">
+                <input type="hidden" name="idmodif" value="<%= r.id_realisateur %>">
+                <label for="nommodif" class="form__label"><%= r.nom %></label>
+                <input class="form__field" type="text" name="nommodif" value="<%= r.nom %>"><br>
+            </div>
+            <div class="griddiv griddivr2 form__group field">    
+                <label for="prenommodif" class="form__label"><%= r.prenom %></label>
+                <input class="form__field" type="text" name="prenommodif" value="<%= r.prenom %>"><br><br>
+            </div>
+            <div class="griddiv griddivr3 form__group field">    
+                <img class="affichefilm" src="/uploads/<%= r.photo %>" width="150" height="201"><br><br>
+                <label class="form__label" for="photo">Photo</label><br>
+                <input class="form__field" type="file" id="photo" name="upload"/><br><br>
+            </div>
+            <div class="griddiv griddivr4">    
+                <input type="submit" name="actionto" value="Modifier"><br><br>
+                <input type="submit" name="actionto" value="Supprimer">
+            </div>
         </form>
     </div>
 <% }); %>
-</div>
+
+</section>
 <% } else { %>
     <p>Tu n'as rien a faire là !</p>
 <% } %>

@@ -3,12 +3,13 @@ let film = document.getElementsByClassName("film");
 for(let f of film){
     f.addEventListener("click", (event) =>{
         console.log(f.getAttribute('id'));
+
         axios.get("/apidetail/"+f.getAttribute('id')).then(response => {
             let note = 0;
             for(let n of response.data.comment) {note += n.note}
             let moyen = note/response.data.comment.length;
             let notemoyenne = moyen.toFixed(1)
-
+            
             document.getElementById("detailfilm").innerHTML = '<div class="detailfilm">'+
             '<center><h1>'+response.data.film.titre+'</h1>'+
             '<div class="note">'+
@@ -30,7 +31,9 @@ for(let f of film){
                 '</div>'+
             '</div>'+
             '<img class="affichefilm" src="/uploads/'+response.data.film.affiche+'" width="240" height="320">'+
-            '<p class="description">'+response.data.film.description +'</p></center>';
+            '<p class="description">'+response.data.film.description +'</p></center>'+
+            '<a href="/detailfilm/'+response.data.film.id_film+'"><button>+</button></a><br>';
+
             for(let j of response.data.joue){
                 for(let a of response.data.acteur){
                     if (j.Id_acteur == a.id_acteur) {
@@ -39,7 +42,6 @@ for(let f of film){
                     };
                 }
             }
-
         });
     })
 }
